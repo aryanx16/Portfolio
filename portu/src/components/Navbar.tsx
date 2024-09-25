@@ -1,6 +1,6 @@
 export default function (){
     return(
-        <div className="w-screen h-24 bg-back text-white">
+        <div className=" w-screen h-24  text-white  ">
             <div className="flex justify-around items-center h-full ">
                 <div className="flex text-4xl font-beba font-bold  text-red-500 ">
                     Aryan

@@ -1,4 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -17,9 +22,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: { rubik: ['Rubik', 'sans-serif'], protest: ["Protest Guerrilla", "sans-serif"], bebo: ["Bebas Neue", "sans-serif"], beba: ["Bebas Neue", "system-ui"], },
       colors: {
-        back:'rgb(13, 8, 12)',
         border: "hsl(var(--border))",
+        back: 'rgb(13, 8, 12)',
+        purpp:"rgb(47, 24, 51)",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -53,19 +60,20 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      fontFamily:{
-        rubik: ['Rubik', 'sans-serif'],
-        protest:["Protest Guerrilla", "sans-serif"],
-        bebo :["Bebas Neue", "sans-serif"],
-        beba :["Bebas Neue", "system-ui"],
-
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -78,8 +86,23 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        aurora: "aurora 60s linear infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")
+    ,
+    addVariablesForColors,
+  ],
+
+}
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+ 
+  addBase({
+    ":root": newVars,
+  });
 }
