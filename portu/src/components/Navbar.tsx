@@ -1,9 +1,11 @@
+import HyperText from "./Hypertext";
+
 export default function (){
     return(
         <div className=" w-screen h-24  text-white  ">
             <div className="flex justify-around items-center h-full ">
-                <div className="flex text-4xl font-beba font-bold  text-red-500 ">
-                    Aryan
+                <div className="flex text-4xl font-beba font-bold  text-sky-500 ">
+                    <HyperText className="font-beba" text="Aryan"/>
                 </div>
                 <div className="flex text-xl  gap-3 font-beba">
                     <div>Skills</div>

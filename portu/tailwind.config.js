@@ -22,7 +22,9 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily: { rubik: ['Rubik', 'sans-serif'], protest: ["Protest Guerrilla", "sans-serif"], bebo: ["Bebas Neue", "sans-serif"], beba: ["Bebas Neue", "system-ui"], },
+      fontFamily: { rubik: ['Rubik', 'sans-serif'], protest: ["Protest Guerrilla", "sans-serif"], bebo: ["Bebas Neue", "sans-serif"], beba: ["Bebas Neue", "system-ui"], 
+        'great-vibes':['Great Vibes', 'cursive'],
+      },
       colors: {
         border: "hsl(var(--border))",
         back: 'rgb(13, 8, 12)',
@@ -66,6 +68,26 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "shine-pulse": {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
+        },
+        "background-position-spin": {
+          "0%": { backgroundPosition: "top center" },
+          "100%": { backgroundPosition: "bottom center" },
+        },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
         aurora: {
           from: {
             backgroundPosition: "50% 50%, 50% 50%",
@@ -82,11 +104,26 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        spotlight: {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate(-50%,-40%) scale(1)",
+          },
+        },
       },
       animation: {
+        backgroundPositionSpin:
+        "background-position-spin 3000ms infinite alternate",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         aurora: "aurora 60s linear infinite",
+        spotlight: "spotlight 2s ease .75s 1 forwards",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+
       },
     },
   },
